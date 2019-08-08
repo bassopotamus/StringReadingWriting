@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StringReadingWriting"
         mc:Ignorable="d"
-        Title="String" Height="448.5" Width="716">
+        Title="String" Height="496.5" Width="716">
     <Grid>
         <Label x:Name="lblPassword" Content="Enter Password" HorizontalAlignment="Left" Margin="17,133,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="23" Margin="121,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="2"/>
@@ -14,18 +14,19 @@
         <Label x:Name="lblUserName" Content="Enter User Name" HorizontalAlignment="Left" Margin="17,70,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtUserName" HorizontalAlignment="Left" Height="23" Margin="121,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TabIndex="1"/>
         <Button x:Name="btnAdd" Content="Add" HorizontalAlignment="Left" Margin="166,175,0,0" VerticalAlignment="Top" Width="75" Click="BtnAdd_Click"/>
-        <Button x:Name="btnRead" Content="Read" HorizontalAlignment="Left" Margin="32,175,0,0" VerticalAlignment="Top" Width="75" Click="BtnRead_Click"/>
+        <Button x:Name="btnReadFromDatabase" Content="Read From Database" HorizontalAlignment="Left" Margin="17,408,0,0" VerticalAlignment="Top" Width="129" Click="BtnReadFromDatabase_Click"/>
         <TextBox x:Name="tbxUnformattedText" HorizontalAlignment="Left" Height="151" Margin="17,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <TextBox x:Name="tbxFormattedText" HorizontalAlignment="Left" Height="151" Margin="182,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
+        <TextBox x:Name="txtFromFile" HorizontalAlignment="Left" Height="151" Margin="182,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146"/>
         <Button x:Name="btnExport" Content="Export to Text File" HorizontalAlignment="Left" Margin="274,25,0,0" VerticalAlignment="Top" Width="119" Click="BtnExport_Click"/>
         <Label x:Name="lblTextFileSuccess" Content="Success!" HorizontalAlignment="Left" Margin="274,70,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-        <Label x:Name="lblUnformattedText" Content="Unformatted Text" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblFormattedText" Content="Formatted Text" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblFromDatabase" Content="From Database" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblFromFile" Content="From File" HorizontalAlignment="Left" Margin="182,221,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnClose" Content="Close the App" HorizontalAlignment="Left" Margin="274,162,0,0" VerticalAlignment="Top" Width="98" Height="46" Click="BtnClose_Click"/>
         <Button x:Name="btnDropTable" Content="Drop Table" HorizontalAlignment="Left" Margin="274,70,0,0" VerticalAlignment="Top" Width="75" Click="BtnDropTable_Click"/>
-        <Button x:Name="btnLoadDatabase" Content="Load the Database" HorizontalAlignment="Left" Margin="274,118,0,0" VerticalAlignment="Top" Width="119"/>
-        <TextBox HorizontalAlignment="Left" Height="151" Margin="351,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152"/>
-        <TextBox HorizontalAlignment="Left" Height="151" Margin="526,252,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152"/>
-
+        <Button x:Name="btnLoadDatabase" Content="Load the Database" HorizontalAlignment="Left" Margin="274,118,0,0" VerticalAlignment="Top" Width="119" Click="BtnLoadDatabase_Click"/>
+        <TextBox x:Name="txtSQL" HorizontalAlignment="Left" Height="151" Margin="351,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        <Button x:Name="btnReadFromFile" Content="Read From File" HorizontalAlignment="Left" Margin="182,408,0,0" VerticalAlignment="Top" Width="129" Click="BtnReadFromFile_Click"/>
+        <Label x:Name="lblSQL" Content="SQL" HorizontalAlignment="Left" Margin="351,221,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnOutputSQL" Content="Output SQL" HorizontalAlignment="Left" Margin="351,408,0,0" VerticalAlignment="Top" Width="129" Click="BtnOutputSQL_Click"/>
     </Grid>
 </Window>

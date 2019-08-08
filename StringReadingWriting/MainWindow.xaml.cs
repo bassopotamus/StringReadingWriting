@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using StringReadingWriting;
+using Microsoft.Win32;
+using System.Data.Linq;
+using System.IO;
 
 namespace StringReadingWriting
 {
@@ -34,16 +37,10 @@ namespace StringReadingWriting
             var name = txtName.Text;
             var userName = txtUserName.Text;
             var password = txtPassword.Text;
-            Random randomNumber = new Random();
 
-            using (var dbPasswordContext = new PasswordsDbContext())
-            {
-                var userNamePassword = new Password() { Name = name, UserName = userName, NewPass = password };
+            FileOperations fileWriter = new FileOperations();
 
-                dbPasswordContext.Passwords.Add(userNamePassword);
-                dbPasswordContext.SaveChanges();
-
-            }
+            fileWriter.writeToFile(name, userName, password);
 
         }
 
@@ -53,7 +50,7 @@ namespace StringReadingWriting
 
         }
 
-        private void BtnRead_Click(object sender, RoutedEventArgs e)
+        private void BtnReadFromDatabase_Click(object sender, RoutedEventArgs e)
         {
             var dataOpsClass = new DataOperations();
 
@@ -83,6 +80,49 @@ namespace StringReadingWriting
             {
                 deleteRows.DropTables();
             }            
+
+        }
+
+        private void BtnOutputSQL_Click(object sender, RoutedEventArgs e)
+        {
+            var dataOpsClass = new DataOperations();
+
+            var allDataFromDB = dataOpsClass.ReturnEntireDatabase();
+
+            FileOperations fileOps = new FileOperations();
+
+            txtSQL.Text = fileOps.returnSQL(allDataFromDB);
+        }
+
+        private void BtnLoadDatabase_Click(object sender, RoutedEventArgs e)
+        {
+            DataOperations createTable = new DataOperations();
+            FileOperations fileInputForSQL = new FileOperations();
+            var filePath = string.Empty;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                filePath = openFileDialog.FileName;
+            }
+
+            var textForSQL = fileInputForSQL.readFromFile(filePath);
+
+            var sQLForNewDB = fileInputForSQL.returnSQL(textForSQL);
+
+            createTable.WriteToNewDatabase(sQLForNewDB);
+
+        }
+
+        private void BtnReadFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                txtFromFile.Text = File.ReadAllText(openFileDialog.FileName);
+            }
 
         }
     }
