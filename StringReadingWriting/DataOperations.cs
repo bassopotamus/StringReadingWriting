@@ -29,16 +29,31 @@ namespace StringReadingWriting
 
         }
         
-        public bool WriteToNewDatabase(string dataToWrite)
+        public void WriteToNewDatabase(string dataToWrite)
         {
-            if (dataToWrite == "")
+            using (var createNewTable = new PasswordsDbContext())
             {
-                return true;
+                var dataFlag = 0;
+
+                foreach (var item in createNewTable.Passwords)
+                {
+                    if (item.Name == "")
+                    {
+                        dataFlag = 0;
+                    }
+                    else
+                    {
+                        dataFlag = 1;
+                    }
+                }
+
+                if (dataFlag == 0)
+                {
+                    createNewTable.Database.ExecuteSqlCommand(dataToWrite);
+                }
+
             }
-            else
-            {
-                return false;
-            }
+
         }
 
         public void WriteToFile()
